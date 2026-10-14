@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://6h3j3jyjy81d"]
+
+[ext_resource type="PackedScene" uid="uid://61g0n8kwwk1i" path="res://Assets/tiles/floor_with_corner_wall.tscn" id="1_8gp8s"]
+[ext_resource type="PackedScene" uid="uid://co2rdhqspymmq" path="res://Assets/tiles/floor_with_wall.tscn" id="2_opkn5"]
+[ext_resource type="PackedScene" uid="uid://c884q5h1acxfv" path="res://Assets/tiles/normal_floor.tscn" id="3_3eun1"]
+
+[node name="Tileset" type="Node3D"]
+
+[node name="floor_with_corner_wall" parent="." instance=ExtResource("1_8gp8s")]
+
+[node name="Floor_with_wall" parent="." instance=ExtResource("2_opkn5")]
+
+[node name="Normal_floor" parent="." instance=ExtResource("3_3eun1")]

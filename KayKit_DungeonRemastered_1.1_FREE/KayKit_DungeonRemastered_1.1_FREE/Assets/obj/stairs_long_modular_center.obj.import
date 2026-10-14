@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://co23d6npxc1yt"
+path="res://.godot/imported/stairs_long_modular_center.obj-bfae5ed49dd87012b07c6cbe93a33b5f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stairs_long_modular_center.obj-bfae5ed49dd87012b07c6cbe93a33b5f.mesh"]
+
+source_file="res://KayKit_DungeonRemastered_1.1_FREE/KayKit_DungeonRemastered_1.1_FREE/Assets/obj/stairs_long_modular_center.obj"
+dest_files=["res://.godot/imported/stairs_long_modular_center.obj-bfae5ed49dd87012b07c6cbe93a33b5f.mesh", "res://.godot/imported/stairs_long_modular_center.obj-bfae5ed49dd87012b07c6cbe93a33b5f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

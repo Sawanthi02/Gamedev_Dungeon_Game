@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bfowvcf83800j"
+path="res://.godot/imported/barrier_half.obj-987c0147a0a1233ff1359d9c00f8f2cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/barrier_half.obj-987c0147a0a1233ff1359d9c00f8f2cc.mesh"]
+
+source_file="res://KayKit_DungeonRemastered_1.1_FREE/KayKit_DungeonRemastered_1.1_FREE/Assets/obj/barrier_half.obj"
+dest_files=["res://.godot/imported/barrier_half.obj-987c0147a0a1233ff1359d9c00f8f2cc.mesh", "res://.godot/imported/barrier_half.obj-987c0147a0a1233ff1359d9c00f8f2cc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://8alduhalqms8"]
+
+[ext_resource type="Script" path="res://Assets/objects/enemy_3.gd" id="1_2g6y0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flojx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_t84lj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tst1"]
+albedo_color = Color(0.731279, 0.471159, 0, 1)
+
+[node name="Enemy3" type="CharacterBody3D" groups=["enemy", "enemy 2"]]
+script = ExtResource("1_2g6y0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_flojx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_t84lj")
+surface_material_override/0 = SubResource("StandardMaterial3D_6tst1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.2
+target_desired_distance = 0.5
+path_height_offset = -0.6
+path_max_distance = 20.01
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.891535, 0.46581, 9.62615e-07, 1)
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

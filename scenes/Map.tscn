@@ -1,0 +1,140 @@
+[gd_scene load_steps=18 format=3 uid="uid://u37r0do2ow6g"]
+
+[ext_resource type="Script" path="res://scenes/map.gd" id="1_aqnk6"]
+[ext_resource type="PackedScene" uid="uid://cj4pilssu0m4y" path="res://Assets/objects/Player.tscn" id="3_r0fmm"]
+[ext_resource type="Script" path="res://scenes/panel_container.gd" id="4_6jtyt"]
+[ext_resource type="Script" path="res://scenes/enemy_spawner.gd" id="4_8nqbs"]
+[ext_resource type="Script" path="res://scenes/spot_light_3d.gd" id="4_jpll8"]
+[ext_resource type="PackedScene" uid="uid://d4a0gd2kjeti4" path="res://scenes/Pause menu.tscn" id="6_noavq"]
+[ext_resource type="PackedScene" uid="uid://croi0uoi3esae" path="res://scenes/game_over.tscn" id="7_vwgc2"]
+[ext_resource type="AudioStream" uid="uid://b7pylp3x5i6wg" path="res://Assets/Audio/GameMusic.mp3" id="8_w5our"]
+[ext_resource type="AudioStream" uid="uid://vrnnxq10jlsh" path="res://Assets/Audio/Progress.mp3" id="9_rceg6"]
+[ext_resource type="AudioStream" uid="uid://dhxf84yntjvei" path="res://Assets/Audio/Defeat.mp3" id="10_5qrcu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_58tm0"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0.302446, 0.611723, 0.532008, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6qcm"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_gtyqh"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_j435h"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_vmr8t"]
+font_size = 25
+
+[sub_resource type="Environment" id="Environment_2h3ma"]
+background_energy_multiplier = 0.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_6qfkr"]
+agent_height = 0.0
+agent_max_climb = 0.0
+agent_max_slope = 10.0
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_aqnk6")
+
+[node name="Player" parent="." instance=ExtResource("3_r0fmm")]
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D"]
+spot_range = 100.0
+spot_attenuation = 0.3
+script = ExtResource("4_jpll8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera3D"]
+
+[node name="Control" type="Control" parent="Player/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Player/Camera3D/CanvasLayer/Control"]
+self_modulate = Color(0, 0.5, 1, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.181
+anchor_bottom = 0.409
+offset_right = 0.487991
+offset_bottom = -0.0320129
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_6jtyt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_58tm0")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_o6qcm")
+
+[node name="Label3" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_gtyqh")
+
+[node name="Label4" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_j435h")
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Time: "
+label_settings = SubResource("LabelSettings_58tm0")
+
+[node name="Timer" type="Label" parent="Player/Camera3D/CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vmr8t")
+vertical_alignment = 1
+
+[node name="enemy_spawner" type="Node3D" parent="."]
+script = ExtResource("4_8nqbs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2h3ma")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("6_noavq")]
+visible = false
+
+[node name="Game over" parent="CanvasLayer" instance=ExtResource("7_vwgc2")]
+visible = false
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_6qfkr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_w5our")
+
+[node name="ProgressAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_rceg6")
+
+[node name="DefeatAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_5qrcu")
+
+[connection signal="done_loading" from="." to="enemy_spawner" method="_on_map_done_loading"]
+[connection signal="game_over" from="Player" to="CanvasLayer/Game over" method="_on_player_game_over"]
+[connection signal="bake_finished" from="NavigationRegion3D" to="." method="_on_navigation_region_3d_bake_finished"]

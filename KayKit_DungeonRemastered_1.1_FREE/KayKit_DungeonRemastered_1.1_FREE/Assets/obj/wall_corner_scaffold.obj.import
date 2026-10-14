@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://uv8eum5nyya3"
+path="res://.godot/imported/wall_corner_scaffold.obj-c3d537f74665149f3f858b008af62f5d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_corner_scaffold.obj-c3d537f74665149f3f858b008af62f5d.mesh"]
+
+source_file="res://KayKit_DungeonRemastered_1.1_FREE/KayKit_DungeonRemastered_1.1_FREE/Assets/obj/wall_corner_scaffold.obj"
+dest_files=["res://.godot/imported/wall_corner_scaffold.obj-c3d537f74665149f3f858b008af62f5d.mesh", "res://.godot/imported/wall_corner_scaffold.obj-c3d537f74665149f3f858b008af62f5d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

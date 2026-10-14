@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://u6mn25y6g876"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pybla"]
+load_path = "res://.godot/imported/dungeon_texture.png-d66a792d64c43c5f4c4cc8b6bfe02db3.s3tc.ctex"
+
+[resource]
+resource_name = "texture"
+albedo_texture = SubResource("CompressedTexture2D_pybla")
+metallic = 0.5

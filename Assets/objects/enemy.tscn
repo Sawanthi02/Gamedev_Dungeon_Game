@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbxsbhbxtd7ss"]
+
+[ext_resource type="Script" path="res://scenes/rigid_body_3d.gd" id="1_lhqwv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o74hi"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m1udx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_uctet"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02gl4"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="Enemy" type="RigidBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+physics_material_override = SubResource("PhysicsMaterial_o74hi")
+gravity_scale = 0.0
+script = ExtResource("1_lhqwv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_m1udx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_uctet")
+surface_material_override/0 = SubResource("StandardMaterial3D_02gl4")

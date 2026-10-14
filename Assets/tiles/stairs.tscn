@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsnrd5yskk48q"]
+
+[ext_resource type="Script" path="res://Assets/tiles/stairs.gd" id="1_cddfc"]
+[ext_resource type="ArrayMesh" uid="uid://curj53y5e6jpr" path="res://Assets/materials/floor_tile_large.obj" id="1_dqav5"]
+[ext_resource type="ArrayMesh" uid="uid://c5t467wv1yjar" path="res://Assets/materials/stairs_wood.obj" id="4_6srsx"]
+[ext_resource type="Material" uid="uid://u6mn25y6g876" path="res://Assets/materials/wall_material.tres" id="4_20x0q"]
+[ext_resource type="ArrayMesh" uid="uid://cpnw2h2uh4l2" path="res://Assets/materials/torch_lit.obj" id="4_g6rfh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ue5ra"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4qx6q"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11oqu"]
+size = Vector3(4.1, 0.25, 4.1)
+
+[node name="Stairs" type="Node3D" groups=["tiles"]]
+script = ExtResource("1_cddfc")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+shape = SubResource("BoxShape3D_ue5ra")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+shape = SubResource("BoxShape3D_4qx6q")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="FloorTileLarge" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = ExtResource("1_dqav5")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_20x0q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_11oqu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="StairsWood" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0, 0, -0.666667)
+mesh = ExtResource("4_6srsx")
+surface_material_override/0 = ExtResource("4_20x0q")
+
+[node name="TorchLit" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.75, 0.333333, 0.5)
+mesh = ExtResource("4_g6rfh")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_20x0q")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="StaticBody3D/TorchLit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_color = Color(1, 1, 0.454902, 1)
+light_energy = 0.1
+
+[node name="TorchLit2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.75, 0.333333, 0.5)
+mesh = ExtResource("4_g6rfh")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_20x0q")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D/TorchLit2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_color = Color(1, 0.988235, 0.654902, 1)
+light_energy = 0.1
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

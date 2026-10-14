@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://co2rdhqspymmq"]
+
+[ext_resource type="ArrayMesh" uid="uid://curj53y5e6jpr" path="res://Assets/materials/floor_tile_large.obj" id="1_q5u7t"]
+[ext_resource type="ArrayMesh" uid="uid://bdxkyeebri775" path="res://Assets/materials/wall.obj" id="3_5rod2"]
+[ext_resource type="Material" uid="uid://u6mn25y6g876" path="res://Assets/materials/wall_material.tres" id="4_avh0p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6lq4"]
+size = Vector3(4.1, 0.25, 4.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4irv7"]
+size = Vector3(4, 4, 0.5)
+
+[node name="Floor_with_wall" type="Node3D" groups=["tiles"]]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="FloorTileLarge" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = ExtResource("1_q5u7t")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_avh0p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_s6lq4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Wall2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("3_5rod2")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_avh0p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_4irv7")

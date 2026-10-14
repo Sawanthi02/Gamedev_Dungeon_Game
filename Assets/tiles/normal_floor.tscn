@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c884q5h1acxfv"]
+
+[ext_resource type="ArrayMesh" uid="uid://curj53y5e6jpr" path="res://Assets/materials/floor_tile_large.obj" id="1_nlqcs"]
+[ext_resource type="Material" uid="uid://u6mn25y6g876" path="res://Assets/materials/wall_material.tres" id="2_owkah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2hg7"]
+size = Vector3(4.1, 0.25, 4.1)
+
+[node name="Normal_floor" type="Node3D" groups=["tiles"]]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="FloorTileLarge" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+mesh = ExtResource("1_nlqcs")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_owkah")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_b2hg7")

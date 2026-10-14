@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj4pilssu0m4y"]
+
+[ext_resource type="Script" path="res://Assets/objects/player.gd" id="1_5cgpb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dad6m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4v4dk"]
+radius = 0.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h55v1"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
+script = ExtResource("1_5cgpb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_dad6m")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CollisionShape3D"]
+path_desired_distance = 0.2
+target_desired_distance = 2.0
+path_max_distance = 20.01
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_4v4dk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_h55v1")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
